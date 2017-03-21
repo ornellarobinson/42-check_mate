@@ -6,7 +6,7 @@
 /*   By: orazafin <orazafin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:39:03 by orazafin          #+#    #+#             */
-/*   Updated: 2017/03/21 23:55:29 by orazafin         ###   ########.fr       */
+/*   Updated: 2017/03/22 00:00:16 by orazafin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "check_mate.h"
 
-int	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int i = 0;
 
@@ -63,7 +63,7 @@ static int	check_chessboard(char **tab)
 	return (0);
 }
 
-int		main(int argc, char *argv[])
+int			main(int argc, char *argv[])
 {
 	char **tab;
 	int i;

@@ -6,76 +6,57 @@
 /*   By: orazafin <orazafin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:55:05 by orazafin          #+#    #+#             */
-/*   Updated: 2017/03/21 19:20:20 by orazafin         ###   ########.fr       */
+/*   Updated: 2017/03/21 23:55:38 by orazafin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_mate.h"
 
-static int	check_diago_haut_gauche(char **tab, int i, int j)
+static int	check_diago_haut_gauche(char **tab, int i, int j, int size)
 {
-	while (tab[i - 1][j - 1])
-	{
-		if (tab[i - 1][j - 1] == 'K')
-			return (1);
-		i -= 1;
-		j -= 1;
-	}
-	return (0);
-}
-
-static int	check_diago_haut_droite(char **tab, int i, int j)
-{
-	if ( && tab[i -1][])
-	while (tab[i - 1][j + 1])
-	{
-		if (tab[i - 1][j + 1] == 'K')
-			return (1);
-		i -= 1;
-		j += 1;
-	}
-	return (0);
-}
-
-static int	check_diago_bas_gauche(char **tab, int i, int j)
-{
-	if (tab[i + 1] && (j != 0))
-	{
-		while (tab[i + 1][j - 1])
-		{
-			if (tab[i + 1][j - 1] == 'K')
-				return (1);
-			i += 1;
-			j += 1;
-		}
-	}
-	return (0);
-}
-
-static int	check_diago_bas_droite(char **tab, int i, int j)
-{
-	if (tab[i + 1] && j != (ft_strlen(tab[i]) - 1))
-	{
-		while (tab[i + 1][j + 1])
-		{
-			if (tab[i + 1][j + 1] == 'K')
-				return (1);
-			i += 1;
-			j += 1;
-		}
-	}
-	return (0);
-}
-
-int		check_bishop(char **tab, int i, int j)
-{
-	if (check_diago_haut_gauche(tab, i, j) == 1)
+	if (i < 0 || j < 0 || i >= size || j >= size)
+		return (-1);
+	if (tab[i][j] == 'K')
 		return (1);
-	if (check_diago_haut_droite(tab, i, j) == 1)
+	return (check_diago_haut_gauche(tab, i - 1, j + 1, size));
+}
+
+static int	check_diago_haut_droite(char **tab, int i, int j, int size)
+{
+	if (i < 0 || j < 0 || i >= size || j >= size)
+		return (-1);
+	if (tab[i][j] == 'K')
 		return (1);
-	if (check_diago_bas_gauche(tab, i, j) == 1)
+	return (check_diago_haut_droite(tab, i - 1, j - 1, size));
+}
+
+static int	check_diago_bas_gauche(char **tab, int i, int j, int size)
+{
+	if (i < 0 || j < 0 || i >= size || j >= size)
+		return (-1);
+	if (tab[i][j] == 'K')
 		return (1);
-	if (check_diago_bas_droite(tab, i, j) == 1)
+	return (check_diago_bas_gauche(tab, i + 1, j - 1, size));
+}
+
+static int	check_diago_bas_droite(char **tab, int i, int j, int size)
+{
+	if (i < 0 || j < 0 || i >= size || j >= size)
+		return (-1);
+	if (tab[i][j] == 'K')
+		return (1);
+	return (check_diago_bas_droite(tab, i + 1, j + 1, size));
+}
+
+int		check_bishop(char **tab, int i, int j, int size)
+{
+	if (check_diago_haut_gauche(tab, i, j, size) == 1)
+		return (1);
+	if (check_diago_haut_droite(tab, i, j, size) == 1)
+		return (1);
+	if (check_diago_bas_gauche(tab, i, j, size) == 1)
+		return (1);
+	if (check_diago_bas_droite(tab, i, j, size) == 1)
 		return (1);
 	return (0);
 }

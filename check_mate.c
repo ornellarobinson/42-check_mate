@@ -6,7 +6,7 @@
 /*   By: orazafin <orazafin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:39:03 by orazafin          #+#    #+#             */
-/*   Updated: 2017/03/21 19:06:03 by orazafin         ###   ########.fr       */
+/*   Updated: 2017/03/21 23:55:29 by orazafin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,24 @@
 #include <unistd.h>
 #include "check_mate.h"
 
+int	ft_strlen(char *str)
+{
+	int i = 0;
+
+	while (str[i])
+		i++;
+	return (i);
+}
+
 static char **copy(char *argv[], char **tab)
 {
 	int i = 0;
-	while (argv[i])
+	int	j = 1;
+	while (argv[j])
 	{
-		tab[i] = argv[i];
+		tab[i] = argv[j];
 		i++;
+		j++;
 	}
 	tab[i] = NULL;
 	return (tab);
@@ -30,6 +41,7 @@ static int	check_chessboard(char **tab)
 {
 	int i = 0;
 	int j;
+	int size = ft_strlen(tab[i]);
 	while (tab[i])
 	{
 		j = 0;
@@ -37,12 +49,12 @@ static int	check_chessboard(char **tab)
 		{
 			if (tab[i][j] == 'R' && check_rook(tab, i, j))
 				return (1);
-			if (tab[i][j] == 'B' && check_bishop(tab, i, j))
+			if (tab[i][j] == 'B' && check_bishop(tab, i, j, size))
 				return (1);
 			if (tab[i][j] == 'P' && check_pawn(tab, i, j))
 				return (1);
 			if (tab[i][j] == 'Q' && check_rook(tab, i, j) &&
-			check_bishop(tab, i, j))
+			check_bishop(tab, i, j, size))
 				return (1);
 			j++;
 		}

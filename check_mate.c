@@ -6,13 +6,13 @@
 /*   By: orazafin <orazafin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:39:03 by orazafin          #+#    #+#             */
-/*   Updated: 2017/03/22 15:31:46 by orazafin         ###   ########.fr       */
+/*   Updated: 2017/03/22 19:30:56 by orazafin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_mate.h"
-/*
-void	free_chessboard(char **tab)
+
+static void	free_chessboard(char **tab)
 {
 	int line;
 
@@ -24,18 +24,22 @@ void	free_chessboard(char **tab)
 	}
 	free(tab);
 }
-*/
-static int	ft_strlen(char *str)
+
+static char	*ft_strcpy(char *dest, char *src)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (src[i])
+	{
+		dest[i] = src[i];
 		i++;
-	return (i);
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
-static char **copy(char *argv[], char **tab)
+static char	**copy(char *argv[], char **tab)
 {
 	int i;
 	int j;
@@ -44,7 +48,7 @@ static char **copy(char *argv[], char **tab)
 	j = 1;
 	while (argv[j])
 	{
-		tab[i] = argv[j];
+		tab[i] = ft_strcpy(tab[i], argv[j]);
 		i++;
 		j++;
 	}
@@ -56,9 +60,10 @@ static int	check_chessboard(char **tab)
 {
 	int i;
 	int j;
+	int size;
 
 	i = 0;
-	int size = ft_strlen(tab[i]);
+	size = ft_strlen(tab[i]);
 	while (tab[i])
 	{
 		j = 0;
@@ -70,8 +75,8 @@ static int	check_chessboard(char **tab)
 				return (1);
 			if (tab[i][j] == 'P' && check_pawn(tab, i, j))
 				return (1);
-			if (tab[i][j] == 'Q' && check_rook(tab, i, j) &&
-			check_bishop(tab, i, j, size))
+			if (tab[i][j] == 'Q' && (check_rook(tab, i, j) ||
+			check_bishop(tab, i, j, size)))
 				return (1);
 			j++;
 		}
@@ -82,10 +87,10 @@ static int	check_chessboard(char **tab)
 
 int			main(int argc, char *argv[])
 {
-	char **tab;
-	int i;
+	char	**tab;
+	int		i;
 
-	i = 1;
+	i = 0;
 	if (argc != 1)
 	{
 		if (!(tab = malloc(sizeof(char *) * argc)))
@@ -101,7 +106,7 @@ int			main(int argc, char *argv[])
 			write(1, "Success", 7);
 		else
 			write(1, "Fail", 4);
-		//free_chessboard(tab);
+		free_chessboard(tab);
 	}
 	write(1, "\n", 1);
 	return (0);

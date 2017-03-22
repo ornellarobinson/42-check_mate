@@ -6,7 +6,7 @@
 /*   By: orazafin <orazafin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:42:31 by orazafin          #+#    #+#             */
-/*   Updated: 2017/03/22 00:00:20 by orazafin         ###   ########.fr       */
+/*   Updated: 2017/03/22 12:02:54 by orazafin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	check_line(int i, char **tab)
 {
-	int j = 0;
+	int j;
 
+	j = 0;
 	while (tab[i][j])
 	{
 		if (tab[i][j] == 'K')
@@ -27,8 +28,9 @@ static int	check_line(int i, char **tab)
 
 static int	check_column(int j, char **tab)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	while (tab[i])
 	{
 		if (tab[i][j] == 'K')

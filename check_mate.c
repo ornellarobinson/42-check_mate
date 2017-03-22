@@ -6,18 +6,17 @@
 /*   By: orazafin <orazafin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:39:03 by orazafin          #+#    #+#             */
-/*   Updated: 2017/03/22 00:00:16 by orazafin         ###   ########.fr       */
+/*   Updated: 2017/03/22 12:02:35 by orazafin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "check_mate.h"
 
 static int	ft_strlen(char *str)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
@@ -25,8 +24,11 @@ static int	ft_strlen(char *str)
 
 static char **copy(char *argv[], char **tab)
 {
-	int i = 0;
-	int	j = 1;
+	int i;
+	int j;
+
+	i = 0;
+	j = 1;
 	while (argv[j])
 	{
 		tab[i] = argv[j];
@@ -39,8 +41,10 @@ static char **copy(char *argv[], char **tab)
 
 static int	check_chessboard(char **tab)
 {
-	int i = 0;
+	int i;
 	int j;
+
+	i = 0;
 	int size = ft_strlen(tab[i]);
 	while (tab[i])
 	{

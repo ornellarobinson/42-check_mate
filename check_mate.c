@@ -6,25 +6,25 @@
 /*   By: orazafin <orazafin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:39:03 by orazafin          #+#    #+#             */
-/*   Updated: 2017/03/22 15:17:28 by orazafin         ###   ########.fr       */
+/*   Updated: 2017/03/22 15:31:46 by orazafin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_mate.h"
-
-static void	free_chessboard(char **tab)
+/*
+void	free_chessboard(char **tab)
 {
-	int i;
+	int line;
 
-	i = 0;
-	while (tab[i])
+	line = 0;
+	while (tab[line])
 	{
-		free(tab[i]);
-		i++;
+		free(tab[line]);
+		line++;
 	}
 	free(tab);
 }
-
+*/
 static int	ft_strlen(char *str)
 {
 	int i;
@@ -35,7 +35,7 @@ static int	ft_strlen(char *str)
 	return (i);
 }
 
-static char	**copy(char *argv[], char **tab)
+static char **copy(char *argv[], char **tab)
 {
 	int i;
 	int j;
@@ -52,12 +52,13 @@ static char	**copy(char *argv[], char **tab)
 	return (tab);
 }
 
-static int	check_chessboard(char **tab, int size)
+static int	check_chessboard(char **tab)
 {
 	int i;
 	int j;
 
 	i = 0;
+	int size = ft_strlen(tab[i]);
 	while (tab[i])
 	{
 		j = 0;
@@ -81,12 +82,10 @@ static int	check_chessboard(char **tab, int size)
 
 int			main(int argc, char *argv[])
 {
-	char	**tab;
-	int		i;
-	int		size;
+	char **tab;
+	int i;
 
 	i = 1;
-	size = t_strlen(tab[i]);
 	if (argc != 1)
 	{
 		if (!(tab = malloc(sizeof(char *) * argc)))
@@ -98,12 +97,12 @@ int			main(int argc, char *argv[])
 			i++;
 		}
 		tab = copy(argv, tab);
-		if (check_chessboard(tab, size) == 1)
+		if (check_chessboard(tab) == 1)
 			write(1, "Success", 7);
 		else
 			write(1, "Fail", 4);
+		//free_chessboard(tab);
 	}
 	write(1, "\n", 1);
-	free_chessboard(tab);
 	return (0);
 }

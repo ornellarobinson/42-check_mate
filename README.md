@@ -10,7 +10,7 @@ For this exercice, you will only play with Pawns, Bishops, Rooks and Queen...
 and obviously a King.
 
 Each piece have a specific method of movement, and all patterns of capture are
-detailled in the examples.txt file.
+detailled below.
 
 A piece can capture only the first ennemy piece it founds on its capture
 patterns.
@@ -44,7 +44,7 @@ $> ./check_mate | cat -e
 $
 $>
 
-REMINDER
+Specific method of movement
 --------------------------------------------------------------------------------
 
 Pion / Pawn (P):
